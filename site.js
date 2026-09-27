@@ -5,6 +5,7 @@ const PRICES = {
   workshop: null,   // סדנה למתחילים
   course: null,     // כרטיסייה ל-4 מפגשים
   event: null,      // ימי הולדת וגיבוש
+  couples: null,    // סדנת אובניים לשניים
 };
 const WHATSAPP = "972509809049"; // 050-9809049 in international format
 // ---------------------------------------------------------------------------

@@ -18,7 +18,7 @@ Then open http://127.0.0.1:8780
   as the still shown while it loads and for visitors who turn off motion.
 - **Gallery:** real photos from the studio in `images/studio/`. To swap one, save a new photo under the same name.
   Captions are in `index.html`.
-- **Sivan's photo:** `images/sivan.jpg`.
+- **Sivan's photos:** `images/sivan.jpg` (the small round one), `images/sivan-studio.jpg` (About) and `images/sivan-flowers.jpg` (next to the contact details).
 - **Texts:** all texts are in `index.html`.
 - **WhatsApp number:** `WHATSAPP` in `site.js`.
 
