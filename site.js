@@ -23,16 +23,6 @@ document.querySelectorAll("[data-wa]").forEach(el => {
   el.rel = "noopener";
 });
 
-// Photos: drop a file with the name in data-photo into images/ and it replaces the drawing.
-document.querySelectorAll(".photo-slot[data-photo]").forEach(slot => {
-  const img = new Image();
-  img.onload = () => {
-    img.alt = slot.getAttribute("aria-label") || slot.querySelector("figcaption")?.textContent || "";
-    slot.querySelector("svg")?.replaceWith(img);
-  };
-  img.src = slot.dataset.photo;
-});
-
 document.getElementById("year").textContent = new Date().getFullYear();
 
 // Mobile menu: the button opens and closes the navigation.
