@@ -23,9 +23,15 @@ document.querySelectorAll("[data-wa]").forEach(el => {
   el.rel = "noopener";
 });
 
-// Motion-sensitive visitors get the still photo instead of the moving video.
-const heroVideo = document.querySelector(".hero-media video");
-if (heroVideo && matchMedia("(prefers-reduced-motion: reduce)").matches) heroVideo.pause();
+// Opening videos: one full-screen video on phones, three side by side on wider screens.
+// Only the set that is shown gets loaded, and motion-sensitive visitors get the still frames.
+const wide = matchMedia("(min-width: 901px)").matches;
+const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+document.querySelectorAll(wide ? ".hero-reel video" : ".hero-phone").forEach(video => {
+  if (calm) return;
+  video.src = video.dataset.src;
+  video.play().catch(() => {});
+});
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
