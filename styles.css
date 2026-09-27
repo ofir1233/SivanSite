@@ -41,7 +41,7 @@ p { margin: 0 0 14px; }
 .btn-ghost:hover { background: var(--clay); color: #fff; }
 .btn-small { min-height: 40px; padding: 6px 18px; font-size: 16px; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
-.text-link { color: var(--clay-dark); font-weight: 700; }
+.text-link { display: inline-block; padding: 10px 0; color: var(--clay-dark); font-weight: 700; }
 
 /* header */
 .top { position: sticky; top: 0; z-index: 10; background: rgba(250, 246, 239, .92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
