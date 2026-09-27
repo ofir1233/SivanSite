@@ -22,6 +22,11 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700&family=Frank+Ruhl+Libre:wght@500;700&display=swap">
 <link rel="stylesheet" href="styles.css">
+<link rel="preload" as="image" href="media/studio-poster.jpg" media="(max-width: 900px)" fetchpriority="high">
+<link rel="preload" as="image" href="media/walk-1.jpg" media="(min-width: 901px)" fetchpriority="high">
+<link rel="preload" as="image" href="media/walk-2.jpg" media="(min-width: 901px)">
+<link rel="preload" as="image" href="media/walk-3.jpg" media="(min-width: 901px)">
+<noscript><style>.hero-media { background: #2e2621 url(media/studio-poster.jpg) center / cover; } .hero-media video { visibility: hidden; }</style></noscript>
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -41,6 +46,22 @@
  "mainEntity": [
   {
    "@type": "Question",
+   "name": "כמה זה עולה?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "זה תלוי בסוג הפעילות. בסדנאות לקבוצות ובאירועים המחיר תלוי גם במספר המשתתפים. כתבו לי בוואטסאפ מה מעניין אתכם, ואשלח מחיר מדויק."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "למי זה מתאים?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "לכולם: ילדים, נוער ומבוגרים. אפשר להגיע לבד, בזוג, עם הילדים או עם חברים."
+   }
+  },
+  {
+   "@type": "Question",
    "name": "צריך ניסיון קודם?",
    "acceptedAnswer": {
     "@type": "Answer",
@@ -53,6 +74,14 @@
    "acceptedAnswer": {
     "@type": "Answer",
     "text": "מפגש בכרטיסייה נמשך שעתיים וחצי, וסדנת האובניים לשניים נמשכת שלוש שעות. בסדנאות ובאירועים לקבוצות אני מתאימה את האורך לקבוצה."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "אפשר להזמין סדנה פרטית?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "בטח. יש סדנת אובניים פרטית לשניים, ויש ימי הולדת, מסיבות רווקות, ערבי צוות וקבוצות חברים. כתבו לי מה סוג האירוע, התאריך, כמה משתתפים ובאילו גילאים, ונתאים יחד את הפעילות."
    }
   },
   {
@@ -70,41 +99,17 @@
     "@type": "Answer",
     "text": "הכלים נשארים בסטודיו להתייבש, להישרף בתנור ולהתזגג. בדרך כלל הם מוכנים לאיסוף אחרי שבועיים-שלושה, ואני מעדכנת כשהם מחכים לכם."
    }
-  },
-  {
-   "@type": "Question",
-   "name": "למי זה מתאים?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "לכולם: ילדים, נוער ומבוגרים. אפשר להגיע לבד, בזוג, עם הילדים או עם חברים."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "אפשר להזמין סדנה פרטית?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "בטח. יש סדנת אובניים פרטית לשניים, ויש ימי הולדת, ערבי צוות וקבוצות חברים. דברו איתי ונתאים את הפעילות."
-   }
-  },
-  {
-   "@type": "Question",
-   "name": "כמה זה עולה?",
-   "acceptedAnswer": {
-    "@type": "Answer",
-    "text": "המחיר תלוי בסוג הפעילות ובגודל הקבוצה. שלחו הודעה ואשלח את כל הפרטים."
-   }
   }
  ]
 }
 </script>
 </head>
 <body>
-<a class="skip" href="#main">דלג לתוכן</a>
+<a class="skip" href="#main">דילוג לתוכן</a>
 
 <header class="top">
   <div class="wrap top-row">
-    <a class="brand" href="#" aria-label="סיוון נווה, סטודיו לקרמיקה. לראש העמוד">
+    <a class="brand" href="#" aria-label="סטודיו חרס, סיוון נווה. לראש העמוד">
       <img class="logo" src="images/logo.svg" alt="" width="70" height="50">
     </a>
     <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="תפריט">
@@ -112,13 +117,14 @@
     </button>
     <nav id="site-nav" aria-label="ניווט ראשי">
       <a href="#about">עליי</a>
-      <a href="#workshops">סדנאות</a>
+      <a href="#workshops">סדנה למתחילים</a>
       <a href="#courses">כרטיסייה</a>
       <a href="#events">אירועים</a>
-      <a href="#gallery">עבודות</a>
-      <a href="#contact">צור קשר</a>
+      <a href="#couples">סדנה לשניים</a>
+      <a href="#gallery">גלריה</a>
+      <a href="#contact">יצירת קשר</a>
     </nav>
-    <a class="btn btn-small top-wa" data-wa="היי סיוון, אשמח לשמוע על הסדנאות בסטודיו" href="#contact">וואטסאפ</a>
+    <a class="btn btn-small top-wa" data-wa="היי סיוון, הגעתי מהאתר ואשמח לפרטים.&#10;מה מעניין אותי:&#10;כמה משתתפים ובאילו גילאים:&#10;מתי נוח:" href="#contact">וואטסאפ</a>
   </div>
 </header>
 
@@ -127,20 +133,21 @@
     <div class="hero-copy">
       <p class="eyebrow">סטודיו חרס · סטודיו ביתי לקרמיקה · מיתר</p>
       <h1>לגעת באדמה.<br>ליצור. להירגע.</h1>
-      <p class="lead">לגלות את הצבעים, המרקמים והחיים שמתחת לפני השטח. בסטודיו שלי במיתר לשים, מפסלים ועובדים על האובניים, בפעם הראשונה או כדי להעמיק, לבד, בזוג או עם כל החבר'ה.</p>
+      <p class="lead">לגלות את הצבעים, המרקמים והחיים שמתחת לפני השטח. בסטודיו שלי במיתר לשים את החימר, מפסלים ועובדים על האובניים, בפעם הראשונה או כדי להעמיק, לבד, בזוג או עם כל החבר'ה.</p>
       <div class="actions">
-        <a class="btn" data-wa="היי סיוון, אשמח לקבוע סדנה בסטודיו" href="#contact">לקביעת סדנה</a>
-        <a class="btn btn-ghost" href="#workshops">מה יש בסטודיו</a>
+        <a class="btn" data-wa="היי סיוון, הגעתי מהאתר ואשמח לקבוע סדנה.&#10;איזו סדנה מעניינת אותי:&#10;כמה משתתפים ובאילו גילאים:&#10;מתי נוח:" href="#contact">לקביעת סדנה</a>
+        <a class="btn btn-ghost" href="#workshops">מה עושים בסטודיו</a>
       </div>
     </div>
     <div class="hero-media">
-      <video class="hero-phone" muted loop playsinline preload="none" poster="media/studio-poster.jpg" data-src="media/studio.mp4" aria-label="סיור קצר בסטודיו חרס במיתר"></video>
+      <video class="hero-phone" muted loop playsinline preload="none" data-poster="media/studio-poster.jpg" data-src="media/studio.mp4" aria-label="סיור קצר בסטודיו חרס במיתר"></video>
       <div class="hero-reel" aria-hidden="true">
-        <video muted loop playsinline preload="none" poster="media/walk-1.jpg" data-src="media/walk-1.mp4"></video>
-        <video muted loop playsinline preload="none" poster="media/walk-2.jpg" data-src="media/walk-2.mp4"></video>
-        <video muted loop playsinline preload="none" poster="media/walk-3.jpg" data-src="media/walk-3.mp4"></video>
+        <video muted loop playsinline preload="none" data-poster="media/walk-1.jpg" data-src="media/walk-1.mp4"></video>
+        <video muted loop playsinline preload="none" data-poster="media/walk-2.jpg" data-src="media/walk-2.mp4"></video>
+        <video muted loop playsinline preload="none" data-poster="media/walk-3.jpg" data-src="media/walk-3.mp4"></video>
       </div>
       <p class="hero-tag">צקלג 13, מיתר · ככה נראה הסטודיו</p>
+      <button class="hero-pause" type="button" aria-pressed="false" aria-label="השהיית הסרטונים" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path class="i-pause" d="M7 5h3v14H7zM14 5h3v14h-3z"/><path class="i-play" d="M8 5l11 7-11 7z"/></svg></button>
     </div>
   </section>
 
@@ -166,7 +173,7 @@
         <ul class="about-facts">
           <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M6 20h20c0 5-4.5 8-10 8S6 25 6 20z"/><path d="M11 20c0-6 2-10 5-10s5 4 5 10"/><path d="M4 20h24"/></svg><b>בלי ניסיון קודם</b><span>הכול מחכה לכם</span></li>
           <li><svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="11" cy="10" r="4"/><circle cx="22" cy="12" r="3"/><path d="M4 27c0-5 3-9 7-9s7 4 7 9M17 27c0-4 2-7 5-7s5 3 5 7"/></svg><b>לכל הגילאים</b><span>ילדים, נוער ומבוגרים</span></li>
-          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27s-10-6-10-13a5.5 5.5 0 0 1 10-3 5.5 5.5 0 0 1 10 3c0 7-10 13-10 13z"/></svg><b>אווירה משפחתית</b><span>וליווי אישי לכל אחד</span></li>
+          <li><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 27s-10-6-10-13a5.5 5.5 0 0 1 10-3 5.5 5.5 0 0 1 10 3c0 7-10 13-10 13z"/></svg><b>אווירה משפחתית</b><span>וליווי אישי צמוד</span></li>
         </ul>
         <div class="sign">
           <img src="images/sivan.jpg" alt="" width="276" height="494" loading="lazy">
@@ -185,36 +192,36 @@
         <article id="workshops" class="offer">
           <figure class="offer-photo"><img src="images/studio/offer-workshop.jpg" alt="ידיים של ילדה עובדות על חימר בסדנה" width="800" height="600" loading="lazy"><span class="offer-chip">מפגש אחד</span></figure>
           <div class="offer-body">
-            <h3>סדנה למתחילים</h3>
+            <h3 id="workshops-title">סדנה למתחילים</h3>
             <p>היכרות נעימה ורגועה עם עולם החומר. מפסלים, מנסים את האובניים ועובדים במשטחים, צובעים באותו מפגש ויוצרים את הכלי הראשון שלכם.</p>
             <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>בלי צורך בניסיון קודם</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>כל החומרים והכלים כלולים</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>הכלים נשרפים בתנור ומוכנים לאיסוף אחרי שבועיים-שלושה</li></ul>
             <div class="offer-foot">
               <p class="price" data-price="workshop">מחיר לפי בקשה</p>
-              <a class="btn btn-ghost" data-wa="היי סיוון, אשמח לשמוע על הסדנה למתחילים" href="#contact">לפרטים והרשמה</a>
+              <a class="btn btn-ghost" data-wa="היי סיוון, ראיתי באתר את הסדנה למתחילים ואשמח לפרטים ולמחיר.&#10;כמה משתתפים ובאילו גילאים:&#10;מתי נוח:" href="#contact" aria-describedby="workshops-title">לפרטים ומחיר</a>
             </div>
           </div>
         </article>
         <article id="courses" class="offer offer-featured">
           <figure class="offer-photo"><img src="images/studio/offer-card.jpg" alt="קערה עם אוזניים על האובניים" width="800" height="600" loading="lazy"><span class="offer-chip">4 מפגשים · שעתיים וחצי כל אחד</span></figure>
           <div class="offer-body">
-            <h3>כרטיסייה ל-4 מפגשים</h3>
+            <h3 id="courses-title">כרטיסייה ל-4 מפגשים</h3>
             <p>באווירה משפחתית ואינטימית נתנסה במגע בחימר במספר שיטות ובצבעים מגוונים, עם ליווי אישי לאורך הדרך.</p>
             <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>אובניים, פיסול, חוליות, פינצ'ינג ומשטחים</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>צביעה ועבודה עם זיגוגים</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>בתוקף 3 חודשים מהמפגש הראשון</li></ul>
             <div class="offer-foot">
               <p class="price" data-price="course">מחיר לפי בקשה</p>
-              <a class="btn" data-wa="היי סיוון, אשמח לשמוע על הכרטיסייה ל-4 מפגשים" href="#contact">לפרטים והרשמה</a>
+              <a class="btn" data-wa="היי סיוון, ראיתי באתר את הכרטיסייה ל-4 מפגשים ואשמח לפרטים ולמחיר.&#10;למי הכרטיסייה ובאיזה גיל:&#10;מתי נוח:" href="#contact" aria-describedby="courses-title">לפרטים ומחיר</a>
             </div>
           </div>
         </article>
         <article id="events" class="offer">
           <figure class="offer-photo"><img src="images/studio/offer-events.jpg" alt="שולחן הסדנה ערוך עם חמניות" width="800" height="600" loading="lazy"><span class="offer-chip">לקבוצות</span></figure>
           <div class="offer-body">
-            <h3>ימי הולדת וגיבוש</h3>
+            <h3 id="events-title">ימי הולדת וגיבוש</h3>
             <p>פעילות יצירתית וחגיגית לקבוצות: ימי הולדת, מסיבות רווקות, ערבי צוות וגיבוש. כל משתתף יוצר פריט אישי משלו.</p>
             <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>מתאים לילדים, נוער ומבוגרים</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>אווירה שמחה ומשוחררת</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>כל אחד יוצר מזכרת משלו, שמחכה לו לאיסוף אחרי השריפה</li></ul>
             <div class="offer-foot">
               <p class="price" data-price="event">מחיר לפי בקשה</p>
-              <a class="btn btn-ghost" data-wa="היי סיוון, אשמח לתאם אירוע בסטודיו" href="#contact">לתיאום אירוע</a>
+              <a class="btn btn-ghost" data-wa="היי סיוון, ראיתי באתר את הפעילות לימי הולדת וגיבוש ואשמח לתאם אירוע.&#10;סוג האירוע (יום הולדת, מסיבת רווקות, ערב צוות...):&#10;תאריך מבוקש:&#10;כמה משתתפים ובאילו גילאים:" href="#contact" aria-describedby="events-title">לתיאום אירוע</a>
             </div>
           </div>
         </article>
@@ -222,12 +229,12 @@
           <figure class="offer-photo"><img src="images/studio/wheel-corner.jpg" alt="פינת האובניים בסטודיו ליד החלון" width="464" height="464" loading="lazy"><span class="offer-chip">סדנה פרטית · עד 2 משתתפים</span></figure>
           <div class="offer-body">
             <p class="offer-kicker">3 שעות על האובניים, רק אתם ואני</p>
-            <h3>סדנת אובניים לשניים</h3>
+            <h3 id="couples-title">סדנת אובניים לשניים</h3>
             <p>לומדים את יסודות העבודה על האובניים: מרכוז החומר, יצירת צילינדר, פתיחה והרמה. מתנסים ביצירת כדים, צלחות ופריטי נוי אישיים. מתאימה לזוגות, וגם למי שמגיע לבד. זמן איכות אמיתי, עם הידיים בחומר.</p>
             <ul><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>כל משתתף יוצר כשלושה כלים</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>הכלים נשארים בסטודיו לשריפה ולזיגוג, ומוכנים לאיסוף אחרי שבועיים-שלושה</li><li><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>כולל כיבוד קל, שתייה חמה או קרה ויין</li></ul>
             <div class="offer-foot">
               <p class="price" data-price="couples">מחיר לפי בקשה</p>
-              <a class="btn" data-wa="היי סיוון, אשמח לתאם סדנת אובניים לשניים" href="#contact">לתיאום סדנה לשניים</a>
+              <a class="btn" data-wa="היי סיוון, ראיתי באתר את סדנת האובניים לשניים ואשמח לתאם.&#10;מספר משתתפים (1 או 2):&#10;מתי נוח:" href="#contact" aria-describedby="couples-title">לתיאום סדנה לשניים</a>
             </div>
           </div>
         </article>
@@ -240,18 +247,19 @@
       <p class="eyebrow center">איך זה עובד</p>
       <h2 id="steps-title" class="center">מגוש חימר לכלי שלכם</h2>
       <ol class="step-list">
-        <li><b>מגיעים לסטודיו</b><span>בלי ניסיון ובלי ציוד. חימר, כלים וסינרים מחכים לכם.</span></li>
-        <li><b>מפסלים ועובדים על האובניים</b><span>אני מלווה כל אחד ואחת, בקצב שלכם.</span></li>
-        <li><b>צובעים באותו מפגש</b><span>בוחרים צבעים וזיגוגים ונותנים לכלי את האופי שלו.</span></li>
+        <li><b>כותבים לי בוואטסאפ</b><span>מספרים מה מעניין אתכם, וקובעים יחד מועד שנוח לכם.</span></li>
+        <li><b>מגיעים לסטודיו</b><span>בלי ניסיון ובלי ציוד. חימר, כלים וסינרים מוכנים בשבילכם.</span></li>
+        <li><b>מפסלים, עובדים על האובניים וצובעים</b><span>בוחרים צבעים וזיגוגים באותו מפגש, ואני מלווה אתכם בקצב שלכם.</span></li>
         <li><b>שריפה בתנור ואיסוף</b><span>הכלים נשרפים בתנור, ואחרי שבועיים-שלושה הם מוכנים לאיסוף. אני מעדכנת אתכם.</span></li>
       </ol>
+      <p class="center steps-cta"><a class="btn" data-wa="היי סיוון, הגעתי מהאתר ואשמח לקבוע מועד.&#10;מה מעניין אותי:&#10;כמה משתתפים ובאילו גילאים:&#10;מתי נוח:" href="#contact">לקביעת מועד בוואטסאפ</a></p>
     </div>
   </section>
 
-  <section id="gallery" class="gallery">
+  <section id="gallery" class="gallery" aria-labelledby="gallery-title">
     <div class="wrap">
       <p class="eyebrow center">הצצה לסטודיו</p>
-      <h2 class="center">ידיים, חימר וצבע</h2>
+      <h2 id="gallery-title" class="center">ידיים, חימר וצבע</h2>
       <p class="center muted">הכלים, הצבעים והידיים. תמונות אמיתיות מהסטודיו במיתר.</p>
       <div class="grid">
         <figure class="tile tall"><img src="images/studio/plates.jpg" alt="צלחות וקערות מזוגגות מהסטודיו" width="720" height="1080" loading="lazy"><figcaption>צלחות וקערות מזוגגות מהסטודיו</figcaption></figure>
@@ -265,7 +273,7 @@
         <figure class="tile"><img src="images/studio/figurines.jpg" alt="פסלונים מחכים לשריפה" width="720" height="720" loading="lazy"><figcaption>פסלונים מחכים לשריפה</figcaption></figure>
         <figure class="tile"><img src="images/studio/aprons.jpg" alt="סינרים תלויים ליד הכניסה לסטודיו" width="464" height="464" loading="lazy"><figcaption>הסינרים מחכים</figcaption></figure>
       </div>
-      <p class="center"><a class="text-link" href="https://www.instagram.com/clay_by_sivan/" target="_blank" rel="noopener">עוד עבודות באינסטגרם <bdi dir="ltr">@clay_by_sivan</bdi></a></p>
+      <p class="center"><a class="text-link" href="https://www.instagram.com/clay_by_sivan/" target="_blank" rel="noopener">עוד עבודות באינסטגרם <bdi dir="ltr" lang="en">@clay_by_sivan</bdi></a></p>
     </div>
   </section>
 
@@ -274,32 +282,34 @@
       <div class="faq-side">
         <p class="eyebrow">לפני שמגיעים</p>
         <h2 id="faq-title">שאלות נפוצות</h2>
-        <p class="muted">לא מצאתם תשובה? כתבו לי ואחזור אליכם.</p>
-        <a class="btn btn-ghost" data-wa="היי סיוון, יש לי שאלה על הסטודיו" href="#contact">שאלה בוואטסאפ</a>
       </div>
       <div class="faq-list">
+        <details><summary>כמה זה עולה?</summary><p>זה תלוי בסוג הפעילות. בסדנאות לקבוצות ובאירועים המחיר תלוי גם במספר המשתתפים. <a data-wa="היי סיוון, אשמח לקבל מחיר.&#10;מה מעניין אותי:&#10;כמה משתתפים:" href="#contact">כתבו לי בוואטסאפ</a> מה מעניין אתכם, ואשלח מחיר מדויק.</p></details>
+        <details><summary>למי זה מתאים?</summary><p>לכולם: ילדים, נוער ומבוגרים. אפשר להגיע לבד, בזוג, עם הילדים או עם חברים.</p></details>
         <details><summary>צריך ניסיון קודם?</summary><p>ממש לא. הסדנה למתחילים בנויה בדיוק בשביל מי שנוגע בחומר בפעם הראשונה.</p></details>
         <details><summary>כמה זמן נמשך מפגש?</summary><p>מפגש בכרטיסייה נמשך שעתיים וחצי, וסדנת האובניים לשניים נמשכת שלוש שעות. בסדנאות ובאירועים לקבוצות אני מתאימה את האורך לקבוצה.</p></details>
+        <details><summary>אפשר להזמין סדנה פרטית?</summary><p>בטח. יש סדנת אובניים פרטית לשניים, ויש ימי הולדת, מסיבות רווקות, ערבי צוות וקבוצות חברים. כתבו לי מה סוג האירוע, התאריך, כמה משתתפים ובאילו גילאים, ונתאים יחד את הפעילות.</p></details>
         <details><summary>מה ללבוש?</summary><p>בגדים נוחים שלא אכפת לכם שיתלכלכו קצת. סינרים יש בסטודיו.</p></details>
         <details><summary>מתי אפשר לקחת את הכלים הביתה?</summary><p>הכלים נשארים בסטודיו להתייבש, להישרף בתנור ולהתזגג. בדרך כלל הם מוכנים לאיסוף אחרי שבועיים-שלושה, ואני מעדכנת כשהם מחכים לכם.</p></details>
-        <details><summary>למי זה מתאים?</summary><p>לכולם: ילדים, נוער ומבוגרים. אפשר להגיע לבד, בזוג, עם הילדים או עם חברים.</p></details>
-        <details><summary>אפשר להזמין סדנה פרטית?</summary><p>בטח. יש סדנת אובניים פרטית לשניים, ויש ימי הולדת, ערבי צוות וקבוצות חברים. דברו איתי ונתאים את הפעילות.</p></details>
-        <details><summary>כמה זה עולה?</summary><p>המחיר תלוי בסוג הפעילות ובגודל הקבוצה. שלחו הודעה ואשלח את כל הפרטים.</p></details>
+      </div>
+      <div class="faq-more">
+        <p class="muted">לא מצאתם תשובה? כתבו לי ואחזור אליכם.</p>
+        <a class="btn btn-ghost" data-wa="היי סיוון, יש לי שאלה:" href="#contact">שאלה בוואטסאפ</a>
       </div>
     </div>
   </section>
 
-  <section id="contact" class="contact">
+  <section id="contact" class="contact" aria-labelledby="contact-title">
     <div class="wrap contact-grid">
       <figure class="contact-photo">
         <img src="images/sivan-flowers.jpg" alt="סיוון מחייכת בסטודיו עם זר חבצלות, ומאחוריה מדפים עם הכלים שלה" width="720" height="780" loading="lazy">
       </figure>
       <div>
         <p class="eyebrow">בואו ניצור יחד</p>
-        <h2>לקביעת סדנה ולפרטים</h2>
-        <p class="lead">הכי מהיר בוואטסאפ. ספרו לי מה מעניין אתכם ונמצא יחד את הזמן המתאים.</p>
+        <h2 id="contact-title">לקביעת סדנה ולפרטים</h2>
+        <p class="lead">הכי מהיר בוואטסאפ. ספרו לי מה מעניין אתכם, כמה תהיו ומתי נוח לכם, ונקבע מועד.</p>
         <div class="actions">
-          <a class="btn" data-wa="היי סיוון, אשמח לפרטים על הסדנאות" href="https://wa.me/972509809049">שליחת הודעה בוואטסאפ</a>
+          <a class="btn" data-wa="היי סיוון, הגעתי מהאתר ואשמח לפרטים.&#10;מה מעניין אותי:&#10;כמה משתתפים ובאילו גילאים:&#10;מתי נוח:" href="https://wa.me/972509809049">שליחת הודעה בוואטסאפ</a>
           <a class="btn btn-ghost" href="tel:+972509809049"><bdi dir="ltr">050-9809049</bdi></a>
         </div>
       </div>
@@ -308,7 +318,7 @@
         <li><span>כתובת</span><a href="https://www.google.com/maps/search/?api=1&query=%D7%A6%D7%A7%D7%9C%D7%92+13+%D7%9E%D7%99%D7%AA%D7%A8" target="_blank" rel="noopener">צקלג 13, מיתר</a></li>
         <li><span>ניווט</span><a href="https://waze.com/ul?q=%D7%A6%D7%A7%D7%9C%D7%92%2013%20%D7%9E%D7%99%D7%AA%D7%A8&amp;navigate=yes" target="_blank" rel="noopener">פתיחה ב-Waze</a></li>
         <li><span>טלפון</span><a href="tel:+972509809049">050-9809049</a></li>
-        <li><span>אינסטגרם</span><a href="https://www.instagram.com/clay_by_sivan/" target="_blank" rel="noopener"><bdi dir="ltr">@clay_by_sivan</bdi></a></li>
+        <li><span>אינסטגרם</span><a href="https://www.instagram.com/clay_by_sivan/" target="_blank" rel="noopener"><bdi dir="ltr" lang="en">@clay_by_sivan</bdi></a></li>
         <li><span>פייסבוק</span><a href="https://www.facebook.com/profile.php?id=61577129723297" target="_blank" rel="noopener">חרס - סיוון נווה עיצוב קרמי</a></li>
       </ul>
       </div>
@@ -320,14 +330,14 @@
   <div class="wrap"><div class="social" aria-label="רשתות חברתיות" role="group">
       <a href="https://www.instagram.com/clay_by_sivan/" target="_blank" rel="noopener" aria-label="אינסטגרם"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.3" cy="6.7" r="1.2" fill="currentColor"/></svg></a>
       <a href="https://www.facebook.com/profile.php?id=61577129723297" target="_blank" rel="noopener" aria-label="פייסבוק"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 3.9v2.3H8v3h2.5V21z" fill="currentColor"/></svg></a>
-      <a data-wa="היי סיוון, אשמח לפרטים על הסדנאות" href="https://wa.me/972509809049" aria-label="וואטסאפ"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6z" fill="currentColor"/></svg></a>
+      <a data-wa="היי סיוון, הגעתי מהאתר ואשמח לפרטים.&#10;מה מעניין אותי:&#10;כמה משתתפים ובאילו גילאים:&#10;מתי נוח:" href="https://wa.me/972509809049" aria-label="וואטסאפ"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6z" fill="currentColor"/></svg></a>
       <a href="tel:+972509809049" aria-label="טלפון 050-9809049"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 10.8a15.2 15.2 0 0 0 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1A17 17 0 0 1 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z" fill="currentColor"/></svg></a>
       <a href="https://waze.com/ul?q=%D7%A6%D7%A7%D7%9C%D7%92%2013%20%D7%9E%D7%99%D7%AA%D7%A8&amp;navigate=yes" target="_blank" rel="noopener" aria-label="ניווט ב-Waze"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a8 8 0 0 0-8 8c0 1.6.5 3.1 1.3 4.3-.5.4-1.1.7-1.8.8.9 1.2 2.4 1.7 3.8 1.5A8 8 0 1 0 12 3z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><circle cx="9.5" cy="10" r="1" fill="currentColor"/><circle cx="14.5" cy="10" r="1" fill="currentColor"/><path d="M9 13.2c1.6 1.4 4.4 1.4 6 0" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></a>
     </div>
     <img class="foot-logo" src="images/logo-light.svg" alt="Sivan Nave חרס" width="84" height="60"><p class="foot-motto">המקום שבו האמנות פוגשת את הנשמה</p>© <span id="year"></span> סטודיו חרס · סיוון נווה · צקלג 13, מיתר</div>
 </footer>
 
-<a class="wa-float" data-wa="היי סיוון, אשמח לפרטים על הסדנאות" href="https://wa.me/972509809049" aria-label="שליחת הודעה בוואטסאפ">
+<a class="wa-float" data-wa="היי סיוון, הגעתי מהאתר ואשמח לפרטים.&#10;מה מעניין אותי:&#10;כמה משתתפים ובאילו גילאים:&#10;מתי נוח:" href="https://wa.me/972509809049" aria-label="שליחת הודעה בוואטסאפ">
   <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3a13 13 0 0 0-11.2 19.6L3 29l6.6-1.7A13 13 0 1 0 16 3zm0 23.6c-2 0-4-.6-5.7-1.6l-.4-.2-3.9 1 1-3.8-.3-.4A10.6 10.6 0 1 1 16 26.6zm5.8-7.9c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2l-1 1.2c-.2.2-.4.2-.7.1a8.7 8.7 0 0 1-4.3-3.8c-.3-.6.3-.5 1-1.7.1-.2 0-.4 0-.6l-1-2.3c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.3-1.2 1.1-1.2 2.8s1.2 3.2 1.4 3.4c.2.2 2.4 3.6 5.8 5 2.1.9 3 1 4 .8.7-.1 1.9-.8 2.2-1.5.3-.8.3-1.4.2-1.5-.1-.2-.3-.3-.6-.4z" fill="currentColor"/></svg>
 </a>
 
