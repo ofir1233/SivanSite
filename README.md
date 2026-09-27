@@ -14,11 +14,10 @@ Then open http://127.0.0.1:8780
 ## Easy edits
 
 - **Prices:** open `site.js` and fill in `PRICES`. `null` shows "מחיר לפי בקשה" (price on request).
-- **Photos:** `images/hero.jpg` (top of the page) and `images/work-1.jpg` to `work-6.jpg` (gallery, square).
-  To swap one, save a new photo under the same name. The captions are in `index.html`.
-  The current gallery photos were made with Google AI Studio from Sivan's Instagram posts: each one recreates a
-  real piece of hers (hamsas, mugs, dog figurine, bowl, flower plate) as a clean product shot. The hero photo is a
-  generated studio scene. Replace any of them with real photos whenever you have good ones.
+- **Opening video:** `media/studio.mp4` (a 28-second walk into the studio, no sound) with `media/studio-poster.jpg`
+  as the still shown while it loads and for visitors who turn off motion.
+- **Gallery:** real photos from the studio in `images/studio/`. To swap one, save a new photo under the same name.
+  Captions are in `index.html`.
 - **Sivan's photo:** `images/sivan.jpg`.
 - **Texts:** all texts are in `index.html`.
 - **WhatsApp number:** `WHATSAPP` in `site.js`.

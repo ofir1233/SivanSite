@@ -3,7 +3,7 @@
 // To show a real price, put the text in quotes, for example: workshop: "180 ₪ למשתתף".
 const PRICES = {
   workshop: null,   // סדנה למתחילים
-  course: null,     // קורס מעמיק
+  course: null,     // כרטיסייה ל-4 מפגשים
   event: null,      // ימי הולדת וגיבוש
 };
 const WHATSAPP = "972509809049"; // 050-9809049 in international format
@@ -22,6 +22,10 @@ document.querySelectorAll("[data-wa]").forEach(el => {
   el.target = "_blank";
   el.rel = "noopener";
 });
+
+// Motion-sensitive visitors get the still photo instead of the moving video.
+const heroVideo = document.querySelector(".hero-media video");
+if (heroVideo && matchMedia("(prefers-reduced-motion: reduce)").matches) heroVideo.pause();
 
 document.getElementById("year").textContent = new Date().getFullYear();
 
