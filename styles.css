@@ -116,6 +116,10 @@ details p { color: var(--muted); margin: 10px 0 0; }
 .foot-logo { height: 60px; width: auto; margin: 0 auto 12px; }
 .foot { background: #3a2f2f; color: #bfb09a; font-size: 15px; padding: 22px 0; text-align: center; }
 
+/* sections fade in gently as they scroll into view */
+.js .reveal { opacity: 0; transform: translateY(18px); transition: opacity .6s ease, transform .6s ease; }
+.js .reveal.shown { opacity: 1; transform: none; }
+
 /* floating WhatsApp */
 .wa-float { position: fixed; inset-inline-start: 20px; bottom: 20px; width: 58px; height: 58px; border-radius: 50%; background: #25d366;
             color: #fff; display: grid; place-items: center; box-shadow: 0 8px 24px rgba(0, 0, 0, .2); z-index: 15; }
@@ -133,17 +137,26 @@ details p { color: var(--muted); margin: 10px 0 0; }
   nav a[aria-current] { text-decoration: none; }
   .hero { padding: 36px 0 56px; }
   .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 32px; }
-  .hero-art { max-width: 240px; margin-inline: auto; order: -1; }
+  .hero-art { max-width: 200px; margin-inline: auto; order: -1; }
   .portrait { max-width: 240px; margin-inline: auto; }
   .cards { grid-template-columns: 1fr; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
   .about, .offers, .gallery, .faq, .contact { padding: 64px 0; }
 }
+@media (max-width: 600px) {
+  /* The floating WhatsApp button covers it on phones. */
+  .top-wa { display: none; }
+  .menu-btn { margin-inline-start: auto; }
+}
 @media (max-width: 420px) {
   body { font-size: 17px; }
-  .top-wa { padding-inline: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .btn, .menu-btn span { transition: none; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+}
+@media print {
+  .top, .wa-float { display: none; }
+  .js .reveal { opacity: 1; transform: none; }
 }

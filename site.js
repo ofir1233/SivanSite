@@ -9,6 +9,8 @@ const PRICES = {
 const WHATSAPP = "972509809049"; // 050-9809049 in international format
 // ---------------------------------------------------------------------------
 
+document.documentElement.classList.add("js");
+
 document.querySelectorAll("[data-price]").forEach(el => {
   const price = PRICES[el.dataset.price];
   el.textContent = price ? `מחיר: ${price}` : "מחיר לפי בקשה";
@@ -61,3 +63,14 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { rootMargin: "-45% 0px -50% 0px" });
 document.querySelectorAll("#main > section").forEach(section => observer.observe(section));
+
+// Sections fade in as they scroll into view.
+const revealer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) { entry.target.classList.add("shown"); revealer.unobserve(entry.target); }
+  });
+}, { rootMargin: "0px 0px -10% 0px" });
+document.querySelectorAll(".about-grid, .cards, .gallery .grid, .faq .wrap, .contact-grid").forEach(el => {
+  el.classList.add("reveal");
+  revealer.observe(el);
+});
