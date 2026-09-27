@@ -16,7 +16,7 @@ Then open http://127.0.0.1:8780
 - **Prices:** open `site.js` and fill in `PRICES`. `null` shows "מחיר לפי בקשה" (price on request).
 - **Photos of her work:** save photos into `images/` with these names and they replace the drawings
   automatically: `hero.jpg` (top of the page), `work-1.jpg` to `work-6.jpg` (gallery, square works best).
-- **Sivan's photo:** `images/sivan.png`.
+- **Sivan's photo:** `images/sivan.jpg`.
 - **Texts:** all texts are in `index.html`.
 - **WhatsApp number:** `WHATSAPP` in `site.js`.
 
@@ -30,3 +30,6 @@ Nothing is online yet. The simplest free options:
   `https://<name>.netlify.app`
 
 A custom domain (for example `sivan-ceramics.co.il`) can be connected later to either one.
+
+Once the site has its address, change `og:image` in `index.html` to the full address
+(for example `https://sivan-ceramics.co.il/images/og-image.jpg`) so WhatsApp and Facebook show the preview picture.

@@ -32,3 +32,32 @@ document.querySelectorAll(".photo-slot[data-photo]").forEach(slot => {
 });
 
 document.getElementById("year").textContent = new Date().getFullYear();
+
+// Mobile menu: the button opens and closes the navigation.
+const menuBtn = document.querySelector(".menu-btn");
+const nav = document.getElementById("site-nav");
+const setMenu = open => {
+  nav.classList.toggle("open", open);
+  menuBtn.setAttribute("aria-expanded", open);
+  menuBtn.setAttribute("aria-label", open ? "סגירת תפריט" : "תפריט");
+};
+menuBtn.addEventListener("click", () => setMenu(!nav.classList.contains("open")));
+nav.addEventListener("click", e => { if (e.target.closest("a")) setMenu(false); });
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape" && nav.classList.contains("open")) { setMenu(false); menuBtn.focus(); }
+});
+document.addEventListener("click", e => {
+  if (nav.classList.contains("open") && !e.target.closest(".top")) setMenu(false);
+});
+
+// Highlight the menu item of the section on screen.
+const links = [...nav.querySelectorAll("a[href^='#']")];
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (!entry.isIntersecting) return;
+    // The three offer cards share one section, so it lights up the first of them.
+    const id = entry.target.id || entry.target.querySelector("article[id]")?.id;
+    links.forEach(a => a.hash === `#${id}` ? a.setAttribute("aria-current", "location") : a.removeAttribute("aria-current"));
+  });
+}, { rootMargin: "-45% 0px -50% 0px" });
+document.querySelectorAll("#main > section").forEach(section => observer.observe(section));
