@@ -436,3 +436,11 @@ details p a { color: var(--clay-dark); font-weight: 700; }
 .ig-text > span { color: var(--muted); font-size: 16px; }
 .ig-go { flex: none; font-weight: 700; color: var(--clay-dark); }
 @media (max-width: 600px) { .ig-go { display: none; } .ig-card { padding: 16px; gap: 14px; } .ig-icon { width: 48px; height: 48px; } }
+
+/* offers: the punch card stands a little taller with a badge; the couples workshop gets its own warm tone */
+.offer-featured { position: relative; }
+.offer-badge { position: absolute; z-index: 1; top: 16px; inset-inline-start: 16px; padding: 5px 14px; border-radius: 999px;
+               background: var(--clay); color: #fff; font-size: 14px; font-weight: 700; box-shadow: 0 6px 16px rgba(0, 0, 0, .2); }
+@media (min-width: 901px) { .offers-grid .offer-featured { transform: translateY(-14px); } .offers-grid .offer-featured:hover { transform: translateY(-18px); } }
+.offer-wide { background: #f3e6d6; }
+.offer-wide h3 { font-size: clamp(28px, 2.6vw, 34px); }
