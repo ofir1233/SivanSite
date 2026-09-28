@@ -251,6 +251,10 @@ html:has(.lightbox[open]) { overflow: hidden; } /* the page behind stays still *
 .faq-side { grid-area: 1 / 1; }
 .faq-list { grid-column: 2; grid-row: 1 / span 2; }
 .faq-more { grid-area: 2 / 1; position: sticky; top: 110px; }
+.faq-more { margin-top: 28px; padding: 26px; border-radius: 22px; background: var(--sand); }
+.faq-face { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: center 25%; border: 3px solid #fff;
+            box-shadow: 0 6px 16px rgba(72, 58, 58, .16); margin-bottom: 12px; }
+.faq-more-title { margin: 0 0 2px; font: 700 22px/1.3 var(--serif); color: var(--brown); }
 .faq-more .btn { margin-top: 8px; }
 .faq-list details { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 0 22px; margin-bottom: 12px; transition: box-shadow .2s; }
 .faq-list details[open] { box-shadow: 0 12px 30px rgba(72, 58, 58, .08); }
@@ -279,7 +283,10 @@ details p a { color: var(--clay-dark); font-weight: 700; }
   .contact-side { grid-column: 1 / -1; }
 }
 .contact-list { list-style: none; margin: 0; padding: 0; }
-.contact-list li { display: flex; justify-content: space-between; gap: 16px; padding: 14px 0; border-bottom: 1px solid rgba(243, 234, 215, .2); }
+.contact-list li { display: flex; align-items: center; gap: 14px; padding: 12px 0; border-bottom: 1px solid rgba(243, 234, 215, .16); }
+.contact-list i { flex: none; display: grid; place-items: center; width: 40px; height: 40px; border-radius: 50%; background: rgba(243, 234, 215, .1); }
+.contact-list i svg { width: 20px; height: 20px; fill: none; stroke: #e0b48f; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.contact-list li > span { flex: 1; }
 .contact-list span { color: #cbbba2; }
 .contact-list a { color: #fff; font-weight: 600; text-decoration: none; }
 /* the link covers its whole row, so it is easy to tap */
