@@ -183,16 +183,20 @@ picture { display: contents; }
 .offer-wide .offer-body > p:not(.offer-kicker) { max-width: 40em; }
 .offer-kicker { margin: 0 0 6px; font-size: 15px; font-weight: 700; color: var(--clay-dark); }
 
-/* steps */
-.steps { padding: 0 0 96px; }
-.step-list { list-style: none; counter-reset: step; margin: 40px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
-/* each step spans a title row and a text row, so the texts line up when one title wraps */
-.step-list li { counter-increment: step; position: relative; padding-top: 64px; display: grid; grid-row: span 2; grid-template-rows: subgrid; row-gap: 8px; }
-.step-list li::before { content: counter(step); position: absolute; top: 0; inset-inline-start: 0; width: 48px; height: 48px; border-radius: 50%;
-                        display: grid; place-items: center; background: var(--sand); color: var(--clay-dark); font: 700 22px var(--serif); }
-.step-list li:not(:last-child)::after { content: ""; position: absolute; top: 24px; inset-inline: 60px -12px; border-top: 2px dashed var(--line); }
+/* steps: a photo for each step, joined by a dashed path */
+.steps { padding: 24px 0 112px; }
+.step-list { list-style: none; counter-reset: step; margin: 48px 0 0; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.step-list li { counter-increment: step; position: relative; display: grid; grid-row: span 3; grid-template-rows: subgrid; row-gap: 10px;
+                justify-items: center; text-align: center; }
+.step-photo { position: relative; display: block; width: 156px; height: 156px; margin-bottom: 10px; }
+.step-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; border: 6px solid #fff; box-shadow: 0 14px 30px rgba(72, 58, 58, .16); }
+.step-photo::after { content: counter(step); position: absolute; top: 4px; inset-inline-start: 4px; width: 44px; height: 44px; border-radius: 50%;
+                     display: grid; place-items: center; background: var(--clay); color: #fff; font: 700 21px/1 var(--serif);
+                     box-shadow: 0 0 0 4px var(--cream); }
+.step-list li:not(:last-child)::after { content: ""; position: absolute; top: 78px; inset-inline-start: calc(50% + 92px); width: calc(100% - 184px + 28px);
+                                        border-top: 2px dashed #d9c3a8; }
 .step-list b { display: block; font-family: var(--serif); font-size: 21px; line-height: 1.35; text-wrap: balance; color: var(--brown); }
-.step-list span { color: var(--muted); }
+.step-list span:not(.step-photo) { color: var(--muted); max-width: 17em; }
 .steps-cta { margin: 44px 0 0; }
 
 /* gallery */
@@ -333,8 +337,9 @@ details p a { color: var(--clay-dark); font-weight: 700; }
   .contact-grid:has(.contact-photo) { grid-template-columns: 1fr; }
   .contact-photo { width: min(300px, 80%); margin-inline: auto; }
   .steps { padding-bottom: 64px; }
-  .step-list { grid-template-columns: 1fr 1fr; row-gap: 32px; }
+  .step-list { grid-template-columns: 1fr 1fr; row-gap: 40px; }
   .step-list li::after { display: none; }
+  .step-photo { width: 128px; height: 128px; }
   .tile figcaption { font-size: 13px; padding: 3px 10px; border-radius: 12px; inset-inline-start: 8px; bottom: 8px; max-width: calc(100% - 16px); }
   .tile-open svg { width: 28px; height: 28px; padding: 6px; top: 8px; inset-inline-end: 8px; }
   .grid { grid-template-columns: repeat(2, 1fr); grid-auto-rows: 170px; gap: 10px; }
@@ -361,7 +366,6 @@ details p a { color: var(--clay-dark); font-weight: 700; }
   .foot { padding-bottom: 96px; } /* room under the copyright line for the WhatsApp button */
 }
 @media (max-width: 420px) {
-  .step-list { grid-template-columns: 1fr; }
   .hero-copy .btn { padding-inline: 20px; } /* both hero buttons share one row from 360px */
   body { font-size: 17px; }
 }
@@ -399,4 +403,16 @@ details p a { color: var(--clay-dark); font-weight: 700; }
   .hero-copy h1 { font-size: 38px; margin-bottom: 10px; }
   .hero-copy .lead { font-size: 15.5px; line-height: 1.55; }
   .hero-copy .actions { margin-top: 14px; }
+}
+
+/* phones: each step becomes a row, photo beside the text */
+@media (max-width: 600px) {
+  .step-list { grid-template-columns: 1fr; row-gap: 22px; margin-top: 32px; }
+  .step-list li { grid-row: auto; grid-template-rows: none; grid-template-columns: 96px 1fr; column-gap: 16px; row-gap: 2px;
+                  justify-items: start; text-align: start; align-items: center; }
+  .step-photo { grid-row: span 2; width: 96px; height: 96px; margin: 0; }
+  .step-photo img { border-width: 4px; }
+  .step-photo::after { width: 32px; height: 32px; font-size: 16px; top: -2px; inset-inline-start: -2px; }
+  .step-list b { font-size: 19px; align-self: end; }
+  .step-list span:not(.step-photo) { align-self: start; font-size: 16px; }
 }
