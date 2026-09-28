@@ -69,7 +69,7 @@ nav a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px
 .hero { position: relative; display: flex; align-items: flex-end; overflow: hidden; color: #fff; background: #2e2621;
         min-height: clamp(600px, calc(100svh - 72px), 880px); }
 .hero-media { position: absolute; inset: 0; }
-.hero-media video { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero-media video { width: 100%; height: 100%; object-fit: cover; display: block; filter: saturate(.9) sepia(.12) contrast(1.04); }
 .hero-phone { display: none !important; }
 .hero-reel { display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: 100%; gap: 4px; height: 100%; }
 .hero-media::after { content: ""; position: absolute; inset: 0; pointer-events: none;
@@ -80,6 +80,15 @@ nav a[aria-current] { text-decoration: underline; text-decoration-thickness: 2px
 /* a dark pill keeps the eyebrow readable over bright frames */
 .hero-copy .eyebrow { color: #f0c9a4; display: inline-block; padding: 4px 14px; border-radius: 999px; background: rgba(30, 22, 18, .6); backdrop-filter: blur(6px); }
 .hero-copy .lead { color: #f3ead7; max-width: 32em; }
+.hero-copy h1 em { font-style: normal; color: #f0c9a4; }
+
+/* a slow ribbon of what happens in the studio, right under the opening */
+.marquee { overflow: hidden; background: var(--clay-dark); color: #f7e7d3; padding: 14px 0; border-block: 1px solid rgba(255, 255, 255, .08); }
+.marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+.marquee span { display: inline-flex; align-items: center; gap: 28px; padding-inline-end: 28px; white-space: nowrap;
+                font: 500 20px/1.2 var(--serif); }
+.marquee span::after { content: ""; width: 7px; height: 7px; border-radius: 50%; background: #e0b48f; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(50%); } }
 .hero-copy .btn-ghost { color: #fff; border-color: rgba(255, 255, 255, .85); }
 .hero-copy .btn-ghost:hover { background: #fff; color: var(--brown); border-color: #fff; }
 .hero-tag { position: absolute; inset-inline-end: 20px; top: 20px; margin: 0; z-index: 1; padding: 6px 14px; border-radius: 999px;
@@ -362,6 +371,7 @@ details p a { color: var(--clay-dark); font-weight: 700; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .btn, .menu-btn span { transition: none; }
+  .marquee-track { animation: none; }
   .offer, .tile img, summary::after, .faq-list details { transition: none; }
   .offer:hover, .tile:hover img { transform: none; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
