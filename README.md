@@ -18,7 +18,7 @@ Then open http://127.0.0.1:8780
 - **Opening videos:** phones play `media/studio.mp4` with `media/studio-poster.jpg` as its still; wider screens play `media/walk-1.mp4`, `walk-2.mp4` and `walk-3.mp4` side by side,
   with `walk-1.jpg` to `walk-3.jpg` as stills. To swap one, save the new file under the same name. Visitors can stop them with the pause button in the corner of the opening.
 - **Gallery:** real photos from the studio in `images/studio/`. To swap one, save a new photo under the same name.
-  Captions are in `index.html`.
+  Each photo has a short caption and a longer `alt` description (read aloud to blind visitors), both in `index.html`. Tapping a photo opens it large, so a new photo looks best at about 1080px on its long side.
 - **Sivan's photos:** `images/sivan.jpg` (the small round one), `images/sivan-studio.jpg` (About) and `images/sivan-flowers.jpg` (next to the contact details).
 - **Texts:** all texts are in `index.html`.
 - **FAQ:** each question and its answer are written twice in `index.html`: in the list near the bottom, and in the FAQPage block near the top (for Google). Change both.
@@ -27,7 +27,7 @@ Then open http://127.0.0.1:8780
 
 ## Live site
 
-The site is live on GitHub Pages at https://ofir1233.github.io/SivanSite/. A change pushed to the `main` branch goes online
+The site is live on GitHub Pages at https://heresbysivan.com/. A change pushed to the `main` branch goes online
 within a few minutes, and browsers may keep showing the old version for up to 10 minutes, so reload (or open a private window)
 to check. A custom domain (for example `sivan-ceramics.co.il`) can be connected in the repository's Pages settings; then change
 the three full addresses at the top of `index.html` (canonical, og:url and og:image).

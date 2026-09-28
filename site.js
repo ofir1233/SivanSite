@@ -96,3 +96,54 @@ const reveal = () => {
 addEventListener("scroll", reveal, { passive: true });
 addEventListener("resize", reveal);
 reveal();
+
+// Gallery: tap a photo to see it large. Arrows, swipe and Esc work too.
+const lightbox = document.querySelector(".lightbox");
+if (lightbox && lightbox.showModal) {
+  const tiles = [...document.querySelectorAll(".gallery .tile")];
+  const n = tiles.length;
+  const bigImg = lightbox.querySelector(".lb-img");
+  const photo = i => tiles[(i + n) % n].querySelector("img");
+  const srcOf = img => img.currentSrc || img.src;
+  const captionOf = tile => tile.querySelector("figcaption").textContent;
+  let at = 0, opener = null, x0 = null, y0 = 0;
+  const show = i => {
+    at = (i + n) % n;
+    bigImg.src = srcOf(photo(at));
+    bigImg.alt = photo(at).alt;
+    lightbox.querySelector(".lb-text").textContent = captionOf(tiles[at]);
+    lightbox.querySelector(".lb-count").textContent = `${at + 1} מתוך ${n}`;
+    if (!lightbox.open) lightbox.showModal();
+    [at - 1, at + 1].forEach(j => { new Image().src = srcOf(photo(j)); }); // the neighbours load in advance
+  };
+  tiles.forEach((tile, i) => {
+    const btn = document.createElement("button");
+    btn.className = "tile-open";
+    btn.type = "button";
+    btn.setAttribute("aria-label", `הגדלת התמונה: ${captionOf(tile)}`);
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-6 6M4 20l6-6"/></svg>';
+    btn.addEventListener("click", () => { opener = btn; show(i); });
+    tile.append(btn);
+  });
+  // Right to left: "next" sits on the left.
+  lightbox.querySelector(".lb-close").addEventListener("click", () => lightbox.close());
+  lightbox.querySelector(".lb-next").addEventListener("click", () => show(at + 1));
+  lightbox.querySelector(".lb-prev").addEventListener("click", () => show(at - 1));
+  lightbox.addEventListener("keydown", e => {
+    if (e.key === "ArrowLeft") show(at + 1);
+    else if (e.key === "ArrowRight") show(at - 1);
+  });
+  // A click on the dark space around the photo closes it.
+  lightbox.addEventListener("click", e => { if (e.target === lightbox || e.target.classList.contains("lb-figure")) lightbox.close(); });
+  // Swipe: dragging the photo to the right brings in the next one from the left. Two fingers (zoom) are ignored.
+  lightbox.addEventListener("touchstart", e => {
+    x0 = e.touches.length > 1 ? null : e.touches[0].clientX;
+    y0 = e.touches[0].clientY;
+  }, { passive: true });
+  lightbox.addEventListener("touchend", e => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(dx > 0 ? at + 1 : at - 1);
+  }, { passive: true });
+  lightbox.addEventListener("close", () => { if (opener) opener.focus(); });
+}
