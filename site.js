@@ -1,9 +1,8 @@
 // ---- Easy edits -----------------------------------------------------------
-// Prices: leave null and no price line shows (the note under the workshops says a price is sent on request).
-// To show a real price, put the text in quotes, for example: workshop: "___ ₪ למשתתף" (with Sivan's own figure).
-// It then shows as "מחיר: …" under that workshop's line of facts. Also, in index.html, change that
-// workshop's link "לפרטים ומחיר בוואטסאפ" to "לפרטים ולהרשמה בוואטסאפ", and in its data-wa text
-// change "ואשמח לפרטים ולמחיר" to "ואשמח לפרטים".
+// Prices: leave null to show "מחיר לפי בקשה" (price on request).
+// To show a real price, put the text in quotes, for example: workshop: "180 ₪ למשתתף".
+// Then in index.html change that card's button "לפרטים ומחיר" to "לפרטים ולהרשמה",
+// and in its data-wa text change "ואשמח לפרטים ולמחיר" to "ואשמח לפרטים".
 const PRICES = {
   workshop: null,   // סדנה למתחילים
   course: null,     // כרטיסייה ל-4 מפגשים
@@ -17,8 +16,7 @@ document.documentElement.classList.add("js");
 
 document.querySelectorAll("[data-price]").forEach(el => {
   const price = PRICES[el.dataset.price];
-  el.textContent = price ? `מחיר: ${price}` : "";
-  el.hidden = !price;
+  el.textContent = price ? `מחיר: ${price}` : "מחיר לפי בקשה";
 });
 
 // Every button with data-wa opens WhatsApp with a ready message.
@@ -32,33 +30,23 @@ document.querySelectorAll("[data-wa]").forEach(el => {
 
 // Opening videos: one full-screen video on phones, three side by side on wider screens.
 // Only the set on screen loads and plays. It pauses when scrolled away, when the tab is hidden
-// or with the pause button. Motion-sensitive visitors, and visitors saving data or on a very slow
-// connection, get the still frames and the videos never download.
+// or with the pause button, and motion-sensitive visitors get the still frames.
 const phoneQuery = matchMedia("(max-width: 900px)"); // same breakpoint as styles.css
 const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const net = navigator.connection;
-const lean = !!net && (net.saveData || ["slow-2g", "2g"].includes(net.effectiveType));
 const pauseBtn = document.querySelector(".hero-pause");
-const heroVideos = [...document.querySelectorAll(".hero-media video")];
-const isShown = video => video.matches(phoneQuery.matches ? ".hero-phone" : ".hero-reel video");
 let heroOnScreen = true, stopped = false;
-const syncVideos = () => heroVideos.forEach(video => {
-  const shown = isShown(video);
+const syncVideos = () => document.querySelectorAll(".hero-media video").forEach(video => {
+  const shown = video.matches(phoneQuery.matches ? ".hero-phone" : ".hero-reel video");
   if (shown && !video.poster) video.poster = video.dataset.poster;
-  const play = shown && !calm && !lean && !stopped && heroOnScreen && !document.hidden;
+  const play = shown && !calm && !stopped && heroOnScreen && !document.hidden;
   if (play && !video.getAttribute("src")) video.src = video.dataset.src;
-  // If the browser refuses to play (autoplay blocked, a missing file), the button has nothing to pause.
-  if (play) video.play().catch(err => { if (err.name !== "AbortError") pauseBtn.hidden = true; });
-  else video.pause();
+  play ? video.play().catch(() => {}) : video.pause();
 });
-// The button follows what the videos actually do: "pause" while they play, "play" while they are still.
-const syncButton = () => pauseBtn.setAttribute("aria-pressed", !heroVideos.some(v => isShown(v) && !v.paused));
-if (!calm && !lean) {
+if (!calm) {
   pauseBtn.hidden = false;
-  heroVideos.forEach(v => { v.addEventListener("play", syncButton); v.addEventListener("pause", syncButton); });
-  pauseBtn.addEventListener("click", () => { stopped = pauseBtn.getAttribute("aria-pressed") !== "true"; syncVideos(); syncButton(); });
+  pauseBtn.addEventListener("click", () => { stopped = !stopped; pauseBtn.setAttribute("aria-pressed", stopped); syncVideos(); });
 }
-phoneQuery.addEventListener("change", () => { syncVideos(); syncButton(); });
+phoneQuery.addEventListener("change", syncVideos);
 document.addEventListener("visibilitychange", syncVideos);
 new IntersectionObserver(entries => { heroOnScreen = entries[entries.length - 1].isIntersecting; syncVideos(); })
   .observe(document.querySelector(".hero"));
@@ -87,26 +75,19 @@ document.querySelector(".top").addEventListener("focusout", e => {
   if (nav.classList.contains("open") && e.relatedTarget && !e.relatedTarget.closest(".top")) setMenu(false);
 });
 
-// Highlight the menu item of the section on screen (sections without a menu item clear it).
+// Highlight the menu item of the section on screen.
 const links = [...nav.querySelectorAll("a[href^='#']")];
 const observer = new IntersectionObserver(entries => {
-  const hit = entries.find(e => e.isIntersecting);
-  if (!hit) return;
-  links.forEach(a => a.hash === `#${hit.target.id}` ? a.setAttribute("aria-current", "location") : a.removeAttribute("aria-current"));
+  const hits = entries.filter(e => e.isIntersecting).map(e => e.target.id);
+  if (!hits.length) return;
+  // Side-by-side cards enter together: prefer the one that was clicked in the menu.
+  const id = hits.includes(location.hash.slice(1)) ? location.hash.slice(1) : hits[0];
+  links.forEach(a => a.hash === `#${id}` ? a.setAttribute("aria-current", "location") : a.removeAttribute("aria-current"));
 }, { rootMargin: "-45% 0px -50% 0px" });
-document.querySelectorAll("#main > section[id], .hero").forEach(el => observer.observe(el)); // the opening clears it
-
-// Phones: the WhatsApp bar shows once the opening has scrolled away, and steps aside while the
-// contact section or the footer (which have their own WhatsApp links) is on screen.
-const onScreen = new Map();
-const barObserver = new IntersectionObserver(entries => {
-  entries.forEach(e => onScreen.set(e.target, e.isIntersecting));
-  document.documentElement.classList.toggle("wa-bar-on", ![...onScreen.values()].some(Boolean));
-});
-document.querySelectorAll(".hero, #contact, .foot").forEach(el => barObserver.observe(el));
+document.querySelectorAll("#main > section:not(.offers), .offer[id]").forEach(el => observer.observe(el));
 
 // Sections fade in as they scroll into view (a plain scroll check, so nothing can stay hidden).
-const reveals = [...document.querySelectorAll(".about-layout, .offers-grid, .step-list, .gallery .grid, .voices .wrap, .faq .wrap, .contact-grid")];
+const reveals = [...document.querySelectorAll(".about-layout, .offers-grid, .step-list, .gallery .grid, .faq .wrap, .contact-grid")];
 reveals.forEach(el => el.classList.add("reveal"));
 const reveal = () => {
   const line = innerHeight ? innerHeight * 0.92 : Infinity;
@@ -121,17 +102,13 @@ const lightbox = document.querySelector(".lightbox");
 if (lightbox && lightbox.showModal) {
   const tiles = [...document.querySelectorAll(".gallery .tile")];
   const n = tiles.length;
-  let bigImg = null; // the large <img> is made on first open, so the page never holds an image without a source
+  const bigImg = lightbox.querySelector(".lb-img");
   const photo = i => tiles[(i + n) % n].querySelector("img");
   const srcOf = img => img.currentSrc || img.src;
   const captionOf = tile => tile.querySelector("figcaption").textContent;
   let at = 0, opener = null, x0 = null, y0 = 0;
   const show = i => {
     at = (i + n) % n;
-    if (!bigImg) {
-      bigImg = Object.assign(new Image(), { className: "lb-img", decoding: "async" });
-      lightbox.querySelector(".lb-figure").prepend(bigImg);
-    }
     bigImg.src = srcOf(photo(at));
     bigImg.alt = photo(at).alt;
     lightbox.querySelector(".lb-text").textContent = captionOf(tiles[at]);
@@ -144,6 +121,7 @@ if (lightbox && lightbox.showModal) {
     btn.className = "tile-open";
     btn.type = "button";
     btn.setAttribute("aria-label", `הגדלת התמונה: ${captionOf(tile)}`);
+    btn.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6M10 20H4v-6M20 4l-6 6M4 20l6-6"/></svg>';
     btn.addEventListener("click", () => { opener = btn; show(i); });
     tile.append(btn);
   });
