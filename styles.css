@@ -552,3 +552,32 @@ nav a { font-weight: 500; }
 /* zoom hint only on hover (desktop); on phones tapping a photo still opens it */
 @media (hover: hover) { .tile-open svg { opacity: 0; transition: opacity .2s; } .tile:hover .tile-open svg, .tile-open:focus-visible svg { opacity: 1; } }
 @media (hover: none) { .tile-open svg { display: none; } }
+
+/* Guests' own words (#voices, between the gallery and the FAQ): serif quotes on the paper background,
+   hairlines only, no cards, quote marks, stars or avatars. Grows from 2 to 6 quotes by adding
+   <figure class="voice"> markup only: 2 or 4 → two columns, 3, 5 or 6 → three. */
+.voices { --voice-gap: clamp(28px, 3.4vw, 48px); padding: 112px 0; border-bottom: 1px solid var(--line); }
+.voices-list { display: grid; grid-template-columns: minmax(0, 1fr); margin-top: 48px; }
+.voice { margin: 0; padding: 28px 0; border-top: 1px solid var(--line); display: flex; flex-direction: column; }
+.voice blockquote { margin: 0; flex: 1; }
+.voice blockquote p { margin: 0; max-width: 24em; font: 500 clamp(21px, 2vw, 25px)/1.6 var(--serif); color: var(--brown); text-wrap: pretty; }
+.voice figcaption { margin-top: 24px; font-size: 15px; line-height: 1.6; color: var(--muted); }
+.voice figcaption::before { content: ""; display: inline-block; width: 24px; height: 1px; margin-inline-end: 12px; vertical-align: middle; background: var(--clay); }
+.voice figcaption b { font-weight: 700; color: var(--brown); }
+.voice figcaption a { color: inherit; text-decoration: underline 1px; text-underline-offset: 5px; }
+.voice figcaption a:hover { color: var(--clay-dark); }
+@media (min-width: 901px) {
+  .voices-list { grid-template-columns: repeat(2, minmax(0, 1fr)); row-gap: 56px; }
+  .voice { padding: 36px 0 0; }
+  .voices-list > .voice:nth-child(2n+1) { padding-inline-end: var(--voice-gap); }
+  .voices-list > .voice:nth-child(2n) { padding-inline-start: var(--voice-gap); border-inline-start: 1px solid var(--line); }
+  .voices-list:is(:has(> .voice:nth-child(3):last-child), :has(> .voice:nth-child(5))) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .voices-list:is(:has(> .voice:nth-child(3):last-child), :has(> .voice:nth-child(5))) > .voice { padding-inline: var(--voice-gap); border-inline-start: 1px solid var(--line); }
+  .voices-list:is(:has(> .voice:nth-child(3):last-child), :has(> .voice:nth-child(5))) > .voice:nth-child(3n+1) { padding-inline-start: 0; border-inline-start: 0; }
+  .voices-list:is(:has(> .voice:nth-child(3):last-child), :has(> .voice:nth-child(5))) > .voice:nth-child(3n) { padding-inline-end: 0; }
+  .voices-list:is(:has(> .voice:nth-child(3):last-child), :has(> .voice:nth-child(5))) blockquote p { font-size: 21px; }
+}
+@media (max-width: 900px) {
+  .voices { padding: 80px 0; }
+  .voice:last-child { padding-bottom: 0; }
+}

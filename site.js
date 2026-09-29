@@ -87,7 +87,7 @@ const observer = new IntersectionObserver(entries => {
 document.querySelectorAll("#main > section:not(.offers), .offer[id]").forEach(el => observer.observe(el));
 
 // Sections fade in as they scroll into view (a plain scroll check, so nothing can stay hidden).
-const reveals = [...document.querySelectorAll(".about-layout, .offers-grid, .step-list, .gallery .grid, .faq .wrap, .contact-grid")];
+const reveals = [...document.querySelectorAll(".about-layout, .offers-grid, .step-list, .gallery .grid, .voices-list, .faq .wrap, .contact-grid")];
 reveals.forEach(el => el.classList.add("reveal"));
 const reveal = () => {
   const line = innerHeight ? innerHeight * 0.92 : Infinity;
